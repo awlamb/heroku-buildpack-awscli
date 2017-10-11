@@ -26,7 +26,7 @@ unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscli-bundle.zip
 
 echo "-----> adding installer script into app/.profile.d"
 
-$BUILD_DIR/vendor/awscli-bundle/install -b app/bin/aws
+$BUILD_DIR/vendor/awscli-bundle/install -i /app
 export PATH=/app/bin:$PATH
 #cleaning up...
 rm -rf /tmp/awscli*
