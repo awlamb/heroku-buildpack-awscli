@@ -26,10 +26,10 @@ curl --progress-bar -o /tmp/awscli-bundle.zip $AWS_CLI_URL
 unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscli-bundle.zip
 
 echo "-----> adding installer script into app/.profile.d"
-
+echo "-----> `pwd`"
 chmod +x "$BUILD_DIR/vendor/awscli-bundle/install"
 echo "-----> installing from $BUILD_DIR/vendor/awscli-bundle/install to $BUILD_DIR/vendor/awscli-bundle"
-$BUILD_DIR/vendor/awscli-bundle/install -i "$BUILD_DIR/vendor/awscli-bundle"
+$BUILD_DIR/vendor/awscli-bundle/install -i "$BUILD_DIR/vendor/awscli"
 
 #cleaning up...
 rm -rf /tmp/awscli*
