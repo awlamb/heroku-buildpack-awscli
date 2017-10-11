@@ -26,7 +26,7 @@ unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscli-bundle.zip
 
 echo "-----> adding installer script into app/.profile.d"
 
-INSTALL_DIR="/app/vendor/awscli"
+INSTALL_DIR="$BUILD_DIR/vendor/awscli"
 chmod +x /app/vendor/awscli-bundle/install
 /app/vendor/awscli-bundle/install -i $INSTALL_DIR
 chmod u+x $INSTALL_DIR/bin/aws
