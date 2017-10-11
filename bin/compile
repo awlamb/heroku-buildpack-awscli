@@ -16,20 +16,19 @@ AWS_CLI_URL="https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
-
+VENDORED_AWSCLI="vendor/awscli"
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 
+mkdir -p "$BUILD_DIR/$VENDORED_AWSCLI"
 echo "-----> Fetching AWS CLI into slug"
 curl --progress-bar -o /tmp/awscli-bundle.zip $AWS_CLI_URL
 unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscli-bundle.zip
 
 echo "-----> adding installer script into app/.profile.d"
 
-INSTALL_DIR=$BUILD_DIR/vendor/awscli
 chmod +x "$BUILD_DIR/awscli-bundle/install"
-/app/vendor/awscli-bundle/install -i $INSTALL_DIR
-chmod u+x "$INSTALL_DIR/bin/aws"
+/app/vendor/awscli-bundle/install -i "$BUILD_DIR/$VENDORED_AWSCLI"
 
 #cleaning up...
 rm -rf /tmp/awscli*
