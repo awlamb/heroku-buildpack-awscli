@@ -11,31 +11,27 @@ set -e
 unset GIT_DIR
 
 # config
-# AWS_CLI_URL="https://s3.amazonaws.com/aws-cli/awscli-bundle.zip"
+AWS_CLI_URL="https://s3-us-west-1.amazonaws.com/herokustuff/awscli-bundle.zip"
 
-# # parse and derive params
-# BUILD_DIR=$1
-# CACHE_DIR=$2
-# VENDORED_AWSCLI="vendor/awscli"
-# LP_DIR=`cd $(dirname $0); cd ..; pwd`
-# BUILDPACK_DIR="$(dirname $(dirname $0))"
+# parse and derive params
+BUILD_DIR=$1
+CACHE_DIR=$2
+VENDORED_AWSCLI="vendor/awscli"
+LP_DIR=`cd $(dirname $0); cd ..; pwd`
+BUILDPACK_DIR="$(dirname $(dirname $0))"
 
-# mkdir -p "$BUILD_DIR/$VENDORED_AWSCLI"
-# echo "-----> Fetching AWS CLI into slug"
-# curl --progress-bar -o /tmp/awscli-bundle.zip $AWS_CLI_URL
-# unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscli-bundle.zip
+mkdir -p "$BUILD_DIR/$VENDORED_AWSCLI"
+echo "-----> Fetching AWS CLI into slug"
+curl --progress-bar -o /tmp/awscli-bundle.zip $AWS_CLI_URL
+unzip -qq -d "$BUILD_DIR/vendor" /tmp/awscli-bundle.zip
 
-# echo "-----> adding installer script into app/.profile.d"
+echo "-----> adding installer script into app/.profile.d"
 
-# chmod +x "$BUILD_DIR/vendor/awscli-bundle/install"
-# echo "-----> installing from $BUILD_DIR/vendor/awscli-bundle/install to $BUILD_DIR/vendor/awscli-bundle"
-# $BUILD_DIR/vendor/awscli-bundle/install
+chmod +x "$BUILD_DIR/vendor/awscli-bundle/install"
+echo "-----> installing from $BUILD_DIR/vendor/awscli-bundle/install to $BUILD_DIR/vendor/awscli-bundle"
+$BUILD_DIR/vendor/awscli-bundle/install -i "$BUILD_DIR/vendor/awscli-bundle"
 
-# #cleaning up...
-# rm -rf /tmp/awscli*
+#cleaning up...
+rm -rf /tmp/awscli*
 
-# echo "-----> aws cli installation done"
-echo "------> do this"
-curl https://bootstrap.pypa.io/get-pip.py | python
-pip install awscli
 echo "-----> aws cli installation done"
