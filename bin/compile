@@ -29,7 +29,7 @@ echo "-----> adding installer script into app/.profile.d"
 
 chmod +x "$BUILD_DIR/vendor/awscli-bundle/install"
 echo "-----> installing from $BUILD_DIR/vendor/awscli-bundle/install to $BUILD_DIR/vendor/awscli-bundle"
-$BUILD_DIR/vendor/awscli-bundle/install -i "$BUILD_DIR/vendor/awscli-bundle"
+$BUILD_DIR/vendor/awscli-bundle/install
 
 #cleaning up...
 rm -rf /tmp/awscli*
